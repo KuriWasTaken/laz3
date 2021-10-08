@@ -1,16 +1,6 @@
 import random
 import decimal
 
-def dropzeros(number):
-  mynum = decimal.Decimal(number).normalize()
-  return mynum.__trunc__() if not mynum % 1 else float(mynum)
-
-def checkArray(TBL, Wanted):
-	for i in TBL:
-		if i == Wanted:
-			return True
-	return False
-
 def laz3Encode(msg, Key):
 	if not len(Key) > 3:
 		return "Key is to short!"
@@ -53,6 +43,17 @@ def laz3Decode(msg, Key):
 	Key = newKey
 	encodedChars = []
 	singleChar = ""
+
+	def checkArray(TBL, Wanted):
+		for i in TBL:
+			if i == Wanted:
+				return True
+		return False
+
+	def dropzeros(number):
+		mynum = decimal.Decimal(number).normalize()
+		return mynum.__trunc__() if not mynum % 1 else float(mynum)
+
 	for i in enumerate(msg):
 		if checkArray(dividers, i[1]):
 			if singleChar != "":
